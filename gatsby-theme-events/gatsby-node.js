@@ -49,8 +49,8 @@ exports.createResolvers = ({ createResolvers }, options) => {
 };
 
 // 4. Query for events and create pages
-exports.createPages = async ({ actions, graphql, reporter }) => {
-  const basePath = "/";
+exports.createPages = async ({ actions, graphql, reporter }, options) => {
+  const basePath = options.basePath || "/";
 
   actions.createPage({
     path: basePath,
@@ -80,10 +80,10 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
     actions.createPage({
       path: slug,
-      component: require.resolve('./src/templates/event.jsx'),
+      component: require.resolve("./src/templates/event.jsx"),
       context: {
         eventID: event.id
       }
-    })
+    });
   });
 };
